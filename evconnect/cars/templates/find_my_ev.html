@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find My EV</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Find My EV</h1>
+        
+        <!-- Filter Form -->
+        <form method="GET" action="{% url 'find_my_ev' %}">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="brand">Brand</label>
+                    <select class="form-control" id="brand" name="brand">
+                        <option value="NA" {% if request.GET.brand == 'NA' or not request.GET.brand %}selected{% endif %}>NA</option>
+                        {% for brand in brands %}
+                        <option value="{{ brand }}" {% if request.GET.brand == brand %}selected{% endif %}>{{ brand }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="price_range">Price Range (€)</label>
+                    <input type="number" class="form-control" id="price_range_min" name="price_min" placeholder="Min" value="{{ request.GET.price_min }}">
+                    <input type="number" class="form-control mt-1" id="price_range_max" name="price_max" placeholder="Max" value="{{ request.GET.price_max }}">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="range_km">Range (Km)</label>
+                    <input type="number" class="form-control" id="range_min" name="range_min" placeholder="Min" value="{{ request.GET.range_min }}">
+                    <input type="number" class="form-control mt-1" id="range_max" name="range_max" placeholder="Max" value="{{ request.GET.range_max }}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="rapid_charge">Rapid Charge</label>
+                    <select class="form-control" id="rapid_charge" name="rapid_charge">
+                        <option value="">All</option>
+                        <option value="Yes" {% if request.GET.rapid_charge == 'Yes' %}selected{% endif %}>Yes</option>
+                        <option value="No" {% if request.GET.rapid_charge == 'No' %}selected{% endif %}>No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="top_speed_kmh">Top Speed (Km/h)</label>
+                    <input type="number" class="form-control" id="top_speed_min" name="top_speed_min" placeholder="Min" value="{{ request.GET.top_speed_min }}">
+                    <input type="number" class="form-control mt-1" id="top_speed_max" name="top_speed_max" placeholder="Max" value="{{ request.GET.top_speed_max }}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+
+        <!-- Display Filtered Results -->
+        <div class="row mt-4">
+            {% if cars %}
+                {% for car in cars %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ car.brand }} {{ car.model }}</h5>
+                            <p class="card-text"><strong>Acceleration (0-100 km/h):</strong> {{ car.accel_sec }} seconds</p>
+                            <p class="card-text"><strong>Top Speed:</strong> {{ car.top_speed_kmh }} km/h</p>
+                            <p class="card-text"><strong>Range:</strong> {{ car.range_km }} km</p>
+                            <p class="card-text"><strong>Efficiency:</strong> {{ car.efficiency_whkm }} Wh/km</p>
+                            <p class="card-text"><strong>Fast Charge:</strong> {{ car.fast_charge_kmh }} km/h</p>
+                            <p class="card-text"><strong>Rapid Charge:</strong> {{ car.rapid_charge }}</p>
+                            <p class="card-text"><strong>Powertrain:</strong> {{ car.powertrain }}</p>
+                            <p class="card-text"><strong>Plug Type:</strong> {{ car.plug_type }}</p>
+                            <p class="card-text"><strong>Body Style:</strong> {{ car.body_style }}</p>
+                            <p class="card-text"><strong>Segment:</strong> {{ car.segment }}</p>
+                            <p class="card-text"><strong>Seats:</strong> {{ car.seats }}</p>
+                            <p class="card-text"><strong>Price:</strong> €{{ car.price_euro }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Please select the required features.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
