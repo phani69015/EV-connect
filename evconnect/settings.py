@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qm5q@4-^&)@0zg=+l47qtzu^qgikd*i^s#+t+=_%p(#8(ri+s%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1','localhost','web-production-fb1b.up.railway.app','evconnect.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','evconnect.up.railway.app']
 
 
 # Application definition
@@ -153,6 +153,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-fb1b.up.railway.app'
     'https://evconnect.up.railway.app'
 ]
