@@ -81,11 +81,18 @@ body_style_encoding = {
 segment_encoding = {
     'D': 0, 'C': 1, 'B': 2, 'F': 3, 'A': 4, 'E': 5, 'N': 6, 'S': 7
 }
+import os
+import joblib
+from django.conf import settings
 
+# Define the directory path
+model_path = os.path.join(settings.BASE_DIR,  'cars', 'decision_tree_model.joblib')
+
+# Load the model
+model = joblib.load(model_path)
 def predict_my_ev(request):
     brands = CarDetail.objects.values_list('brand', flat=True).distinct()
     predicted_price = None
-    model = joblib.load('C:\Projects\EV-connect\evconnect\cars\decision_tree_model.joblib')
     if request.method == 'POST':
         # Extract form data
         brand = request.POST.get('brand')
