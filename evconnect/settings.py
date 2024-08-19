@@ -97,7 +97,7 @@ DATABASES = {
         'HOST': 'evconnect-5753.7s5.aws-ap-south-1.cockroachlabs.cloud',
         'PORT': '26257',
         'OPTIONS': {
-            'sslmode': 'verify-full',
+            'sslmode': 'disable',
         }
     }
 }
