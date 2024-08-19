@@ -87,11 +87,19 @@ DATABASES = {
 
 """
 import os
-from .db_config import DATABASES as db_config
-
-# ...
-
-DATABASES = db_config
+DATABASES = {
+    'default': {
+        'ENGINE': 'django_cockroachdb',
+        'NAME': 'evconnect',
+        'USER': 'phanendra',
+        'PASSWORD': 'UZh51Yuh6JVjt5ggrA-_Pw',
+        'HOST': 'evconnect-5753.7s5.aws-ap-south-1.cockroachlabs.cloud',
+        'PORT': '26257',
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
