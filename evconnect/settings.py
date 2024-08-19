@@ -88,6 +88,9 @@ DATABASES = {
 
 """
 import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django_cockroachdb',
@@ -97,7 +100,8 @@ DATABASES = {
         'HOST': 'evconnect-5753.7s5.aws-ap-south-1.cockroachlabs.cloud',
         'PORT': '26257',
         'OPTIONS': {
-            'sslmode': 'disable',
+            'sslmode': 'verify-full',
+            'sslrootcert': os.path.join(BASE_DIR, 'certs', 'root.crt'),
         }
     }
 }
