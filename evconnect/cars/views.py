@@ -85,7 +85,7 @@ segment_encoding = {
 def predict_my_ev(request):
     brands = CarDetail.objects.values_list('brand', flat=True).distinct()
     predicted_price = None
-    model = joblib.load('C:\Full stack\EV-connect\evconnect\cars\decision_tree_model.joblib')
+    model = joblib.load('C:\Projects\EV-connect\evconnect\cars\decision_tree_model.joblib')
     if request.method == 'POST':
         # Extract form data
         brand = request.POST.get('brand')
@@ -115,7 +115,7 @@ def predict_my_ev(request):
             fast_charge_kmh, encoded_rapid_charge, encoded_powertrain, 
             encoded_plug_type, encoded_body_style, encoded_segment, seats
         ]]
-
+  
         # Predict price
         predicted_price = model.predict(input_data)[0]
 
