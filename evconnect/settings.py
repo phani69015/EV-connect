@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qm5q@4-^&)@0zg=+l47qtzu^qgikd*i^s#+t+=_%p(#8(ri+s%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1','localhost']
 
 
 # Application definition
@@ -87,11 +87,19 @@ DATABASES = {
 
 """
 import os
-from .db_config import DATABASES as db_config
-
-# ...
-
-DATABASES = db_config
+DATABASES = {
+    'default': {
+        'ENGINE': 'django_cockroachdb',
+        'NAME': 'evconnect',
+        'USER': 'phanendra',
+        'PASSWORD': 'UZh51Yuh6JVjt5ggrA-_Pw',
+        'HOST': 'evconnect-5753.7s5.aws-ap-south-1.cockroachlabs.cloud',
+        'PORT': '26257',
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -131,6 +139,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
      os.path.join(BASE_DIR, 'cars/static'),
 ]
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles_build','static')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
