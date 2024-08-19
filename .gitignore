@@ -27,3 +27,4 @@ staticfiles/
 *.nox/
 *.coverage
 *.hypothesis/
+.vercel
