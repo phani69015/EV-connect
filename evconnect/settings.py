@@ -154,5 +154,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-fb1b.up.railway.app'
-    'evconnect.up.railway.app'
+    'https://evconnect.up.railway.app'
 ]
