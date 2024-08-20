@@ -82,18 +82,22 @@
     border-radius: 10px;
     margin-bottom: 10px;
 }
-
 .find-ev-third-container {
-    background-image: url("https://images.unsplash.com/photo-1495435229349-e86db7bfa013?q=80&w=1377&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    background-size: cover;
     position: relative;
     z-index: -1;
 }
 
 .fe-specifications-container {
+    background-image: url("https://images.unsplash.com/photo-1495435229349-e86db7bfa013?q=80&w=1377&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: rgba(255, 255, 255, 0);
     color: blue;
-    border: 1px solid rgba(255, 255, 255, 0.0);
+    border: 1px solid rgba(255, 255, 255, 0);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 .fe-specifications-container .card-title,
@@ -221,7 +225,7 @@
                         <select class="form-control" id="brand" name="brand">
                             <option value="NA" {% if request.GET.brand == 'NA' or not request.GET.brand %}selected{% endif %}>NA</option>
                             {% for brand in brands %}
-                            <option value="{{ brand }}" {% if request.GET.brand == brand %}selected{% endif %}>{{ brand }}</option>
+                            <option value="{{ brand }}" {% if request.GET.brand == brand %}selected{% endif %}><strong>{{ brand }}</option></strong>
                             {% endfor %}
                         </select>
                     </div>
@@ -259,87 +263,86 @@
     </div>
 
     <div class="mb-5" >
-
-    <div class="fe-details-container">
-        <div class="find-ev-third-container col-12 w-100">
-            <div class="row">
-                {% if cars %}
-                {% for car in cars %}
-                <div class="col-md-12 mb-4">
-                    <div class=" fe-specifications-container ">
-                        <h5 class="card-title text-center mt-3">{{ car.brand }} {{ car.model }}</h5>
-                        <div class="card-body row ">
-                            <div class="p-2col-12 col-lg-6">
-                                <div class=" findev-second-container ">
-                                    <p class="card-text"><strong>Acceleration (0-100 km/h):</strong> {{ car.accel_sec }} seconds</p>
+        <div class="fe-details-container mb-5 ">
+            <div class="find-ev-third-container col-12 w-100">
+                <div class="row">
+                    {% if cars %}
+                    {% for car in cars %}
+                    <div class="col-md-12 mb-2">
+                        <div class=" fe-specifications-container">
+                            <h5 class="card-title text-center mt-3">{{ car.brand }} {{ car.model }}</h5>
+                            <div class="card-body row tex ">
+                                <div class="col-12 col-lg-6">
+                                    <div class=" findev-second-container ml-4">
+                                        <p class="card-text"><strong>Acceleration (0-100 km/h):</strong> {{ car.accel_sec }} seconds</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="findev-second-container ">
-                                    <p class="card-text"><strong>Top Speed:</strong> {{ car.top_speed_kmh }} km/h</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class="findev-second-container ml-4">
+                                        <p class="card-text"><strong>Top Speed:</strong> {{ car.top_speed_kmh }} km/h</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="findev-second-container  ">
-                                    <p class="card-text"><strong>Range:</strong> {{ car.range_km }} km</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class="findev-second-container ml-4">
+                                        <p class="card-text"><strong>Range:</strong> {{ car.range_km }} km</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="findev-second-container  ">
-                                    <p class="card-text"><strong>Efficiency:</strong> {{ car.efficiency_whkm }} Wh/km</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class="findev-second-container  ml-4 ">
+                                        <p class="card-text"><strong>Efficiency:</strong> {{ car.efficiency_whkm }} Wh/km</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="findev-second-container  ">
-                                    <p class="card-text"><strong>Fast Charge:</strong> {{ car.fast_charge_kmh }} km/h</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class="findev-second-container  ml-4 ">
+                                        <p class="card-text"><strong>Fast Charge:</strong> {{ car.fast_charge_kmh }} km/h</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class=" findev-second-container g-6">
-                                    <p class="card-text"><strong>Rapid Charge:</strong> {{ car.rapid_charge }}</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class=" findev-second-container g-6  ml-4">
+                                        <p class="card-text"><strong>Rapid Charge:</strong> {{ car.rapid_charge }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="  findev-second-container ">
-                                    <p class="card-text"><strong>Powertrain:</strong> {{ car.powertrain }}</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class="  findev-second-container  ml-4 ">
+                                        <p class="card-text"><strong>Powertrain:</strong> {{ car.powertrain }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class=" findev-second-container ">
-                                    <p class="card-text"><strong>Plug Type:</strong> {{ car.plug_type }}</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class=" findev-second-container  ml-4">
+                                        <p class="card-text"><strong>Plug Type:</strong> {{ car.plug_type }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class=" findev-second-container ">
-                                    <p class="card-text"><strong>Body Style:</strong> {{ car.body_style }}</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class=" findev-second-container  ml-4">
+                                        <p class="card-text"><strong>Body Style:</strong> {{ car.body_style }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="findev-second-container ">
-                                    <p class="card-text"><strong>Segment:</strong> {{ car.segment }}</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class="findev-second-container  ml-4">
+                                        <p class="card-text"><strong>Segment:</strong> {{ car.segment }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="findev-second-container ">
-                                    <p class="card-text"><strong>Seats:</strong> {{ car.seats }}</p>
+                                <div class="col-12 col-lg-6">
+                                    <div class="findev-second-container  ml-4">
+                                        <p class="card-text"><strong>Seats:</strong> {{ car.seats }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class=" findev-second-container ">
-                                    <p class="card-text"><strong>Price:</strong> €{{ car.price_euro }}</p>
+                                <div class="col-12 col-lg-6">]
+                    <div class=" findev-second-container  ml-4 ">
+                                        <p class="card-text"><strong>Price:</strong> €{{ car.price_euro }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
+                    {% else %}
+                    <p>Please select the required features.</p>
+                    {% endif %}
                 </div>
-                {% endfor %}
-                {% else %}
-                <p>Please select the required features.</p>
-                {% endif %}
             </div>
         </div>
-    </div>
-</div>
+    
 
     <div class="footer-section" id="Contact Us">
         <div class="container text-center">
