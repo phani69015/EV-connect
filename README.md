@@ -17,3 +17,5 @@
 - **Others**: joblib for model deployment
 
 
+### Deployment 
+https://evconnect.up.railway.app/
