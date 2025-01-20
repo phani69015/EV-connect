@@ -18,4 +18,4 @@
 
 
 ### Deployment 
-https://evconnect.up.railway.app/
+https://evconnect.onrender.com/
